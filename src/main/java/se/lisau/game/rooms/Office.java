@@ -1,21 +1,23 @@
 package se.lisau.game.rooms;
 
 import se.lisau.game.Game;
+import se.lisau.game.model.Burglar;
 import se.lisau.game.util.ScannerUtil;
 
 public class Office implements Room {
     private final Game game; // Game-referens
-    //private boolean burglarConscious = true;
+    private final Burglar burglar; // Burglar-referens
 
-    public Office(Game game) {
+    public Office(Game game, Burglar burglar) {
         this.game = game; // för att kunna avsluta spelet med hjälp av boolean gameFinished
+        this.burglar = burglar; // för att kunna få tag i en burglar
     }
 
     @Override
     public void roomDescription() {
         System.out.println("       -- you're in the office --");
         // skapa en hallway-instans för att kalla på burglar-instans??
-        //if (!burglarConscious) {
+        if (!burglar.isConscious()) {
             System.out.println("-- you see the phone charging on the desk --");
             System.out.println("          -- pick it up? y/n --");
             String YN = ScannerUtil.getUserInput();
@@ -28,9 +30,9 @@ public class Office implements Room {
             } else {
                 System.out.println("invalid input");
             }
-        //} else {
-            //System.out.println(" -- you're too stressed to find the phone! --");
-        //}
+        } else {
+            System.out.println(" -- you're too stressed to find the phone! --");
+        }
 
 
     }

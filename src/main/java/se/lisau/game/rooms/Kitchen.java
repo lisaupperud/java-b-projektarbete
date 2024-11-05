@@ -7,13 +7,13 @@ import se.lisau.game.util.ScannerUtil;
 public class Kitchen implements Room {
     private boolean fryingPanFound = false;
     private final Resident resident;
+
     public Kitchen(Resident resident) {
         this.resident = resident;
     }
 
     @Override
     public void roomDescription() {
-        boolean running = true;
         while (true) {
             if (!fryingPanFound) {
                 System.out.println("      -- you're in the kitchen --");
@@ -48,8 +48,8 @@ public class Kitchen implements Room {
         }
     }
 
-    public void pickUpFryingPan(){
-        if(!fryingPanFound){
+    public void pickUpFryingPan() {
+        if (!fryingPanFound) {
             resident.addDamage(resident.getDamage() + 25);
             fryingPanFound = true;
         }

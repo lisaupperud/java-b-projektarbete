@@ -1,5 +1,6 @@
 package se.lisau.game;
 
+import se.lisau.game.model.Burglar;
 import se.lisau.game.util.ScannerUtil;
 import se.lisau.game.model.Resident;
 import se.lisau.game.rooms.Bedroom;
@@ -19,11 +20,13 @@ public class Game {
     private boolean gameFinished = false; // variabel för att hålla reda på om spelet är vunnet
 
     public Game() {
-        printStartMessage(); // sätter metoden här för att kunna
+        Burglar burglar = new Burglar("burglar", 100, 15);
+        printStartMessage(); // sätter metoden där Resident instansieras här för att kunna ->
         kitchen = new Kitchen(currentResident); // tilldela currentResident till Kitchens konstruktor
-        office = new Office(this);
+        office = new Office(this, burglar);
         bedroom = new Bedroom();
-        hallway = new Hallway(currentResident);
+        hallway = new Hallway(currentResident, burglar);
+
     }
 
     private void printStartMessage() {
@@ -31,8 +34,9 @@ public class Game {
         String playerName = ScannerUtil.getUserInput();
         this.currentResident = new Resident(playerName, 100, 10);
         System.out.println("Welcome to the game " + currentResident.getRole() + "!");
-        gameInstructions();
         wakeUpMessage();
+        gameInstructions();
+
     }
 
     private void wakeUpMessage() {

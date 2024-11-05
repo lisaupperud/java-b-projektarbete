@@ -7,10 +7,11 @@ import se.lisau.game.util.ScannerUtil;
 
 public class Hallway implements Room {
     private final Resident resident;
-    Entity burglar = new Burglar("burglar", 100, 15);
+    private final Burglar burglar;
 
-    public Hallway(Resident resident) {
+    public Hallway(Resident resident, Burglar burglar) {
         this.resident = resident;
+        this.burglar = burglar;
     }
 
     @Override
@@ -18,7 +19,7 @@ public class Hallway implements Room {
         System.out.println(" -- in the hallway a fight breaks out between you and the burglar! --");
         System.out.println("       -- hit the burglar with the frying pan by pressing H --");
         String H = ScannerUtil.getUserInput();
-        if(H.equalsIgnoreCase("H")) {
+        if (H.equalsIgnoreCase("H")) {
             roomTask();
         }
     }
@@ -28,12 +29,13 @@ public class Hallway implements Room {
         fightOneRound(resident, burglar);
 
     }
+
     public void executeAttack(Entity attacker, Entity defender) {
 
         try {
             System.out.println(attacker.getRole() + " attacks " + defender.getRole());
             attacker.punch(defender); // attacker slår defender
-                                      // skada appliceras genom takeHit()
+            // skada appliceras genom takeHit()
 
             Thread.sleep(1000);
 
@@ -49,7 +51,7 @@ public class Hallway implements Room {
 
     private void fightOneRound(Entity resident, Entity burglar) {
         // resident börjar alltid med att attackera
-        while(resident.isConscious() && burglar.isConscious()) {
+        while (resident.isConscious() && burglar.isConscious()) {
             executeAttack(resident, burglar);
             if (!burglar.isConscious()) {
                 System.out.println(burglar.getRole() + " is unconscious!");
@@ -58,7 +60,7 @@ public class Hallway implements Room {
             }
             // om burglar är vid liv så attackerar denna
             executeAttack(burglar, resident);
-            if(!resident.isConscious()){
+            if (!resident.isConscious()) {
                 System.out.println(resident.getRole() + " is unconscious! Game over!");
                 break;
             }
