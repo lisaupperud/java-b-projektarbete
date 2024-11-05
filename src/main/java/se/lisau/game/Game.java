@@ -20,6 +20,7 @@ public class Game {
     private boolean gameFinished = false; // variabel för att hålla reda på om spelet är vunnet
 
     public Game() {
+        // instantiate Burglar här för att använda i de andra klasserna
         Burglar burglar = new Burglar("burglar", 100, 15);
         printStartMessage(); // sätter metoden där Resident instansieras här för att kunna ->
         kitchen = new Kitchen(currentResident); // tilldela currentResident till Kitchens konstruktor
@@ -42,7 +43,7 @@ public class Game {
     private void wakeUpMessage() {
         System.out.println("a loud noice wakes you up!");
         System.out.println("you're on the couch in the living room " +
-                " and hear a sound coming from the bedroom");
+                " and hear a sound coming from the Bedroom");
         System.out.println(" there is a burglar in there!");
 
     }
@@ -52,16 +53,16 @@ public class Game {
         while (!gameFinished && currentResident.isConscious()) {
             System.out.println("where do you go next?");
             livingRoom();
-            System.out.println("bedroom");
+            System.out.println("Bedroom");
             System.out.println("office");
             System.out.println("kitchen");
             System.out.println("hallway");
             String direction = ScannerUtil.getUserInput();
             switch (direction) {
-                case "bedroom" -> goToBedroom();
-                case "office" -> goToOffice();
-                case "kitchen" -> goToKitchen();
-                case "hallway" -> goToHallway();
+                case "Bedroom" -> Bedroom();
+                case "office" -> Office();
+                case "kitchen" -> Kitchen();
+                case "hallway" -> Hallway();
                 default -> System.out.println("Invalid input. Try again.");
             }
         }
@@ -79,16 +80,16 @@ public class Game {
         System.out.println("unable to go there now");
     }
 
-    private void goToBedroom() {
+    private void Bedroom() {
         if (currentLocation.equals(LIVING_ROOM)) {
-            System.out.println("          ... you're quietly moving to the bedroom ...");
+            System.out.println("          ... you're quietly moving to the Bedroom ...");
             bedroom.roomDescription();
         } else {
             wrongWay();
         }
     }
 
-    private void goToKitchen() {
+    private void Kitchen() {
         if (currentLocation.equals(LIVING_ROOM)) {
             System.out.println("      -- moving to the kitchen --");
             kitchen.roomDescription();
@@ -98,7 +99,7 @@ public class Game {
 
     }
 
-    private void goToOffice() {
+    private void Office() {
         if (currentLocation.equals(LIVING_ROOM)) {
             System.out.println("           -- moving to the office --");
             office.roomDescription();
@@ -108,7 +109,7 @@ public class Game {
 
     }
 
-    private void goToHallway() {
+    private void Hallway() {
         if (currentLocation.equals(LIVING_ROOM)) {
             System.out.println("               -- you run towards the hallway --");
             hallway.roomDescription();
@@ -123,15 +124,16 @@ public class Game {
         System.out.println(" ");
         System.out.println("1. get a weapon from the kitchen");
         System.out.println(" ");
-        System.out.println("2. get the burglar out from the bedroom to the hallway");
+        System.out.println("2. get the burglar out from the Bedroom to the hallway");
         System.out.println(" ");
         System.out.println("3. defeat the burglar");
         System.out.println(" ");
         System.out.println("4. call the police from the office");
     }
 
-    public void gameFinished(boolean won) {
-        this.gameFinished = won;
+    // metod för att avsluta spelet
+    public void gameFinished(boolean done) {
+        this.gameFinished = done;
     }
 
 }
