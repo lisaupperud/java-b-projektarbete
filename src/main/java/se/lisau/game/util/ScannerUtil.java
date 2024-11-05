@@ -1,4 +1,4 @@
-package se.lisau.game;
+package se.lisau.game.util;
 
 import java.util.Scanner;
 
@@ -9,7 +9,11 @@ public class ScannerUtil {
 
     }
 
-    public static String getUserInput(){
+    public static String getUserInput() {
         return sc.nextLine();
+    }
+
+    public static void closeScanner() {
+        sc.close();
     }
 }
