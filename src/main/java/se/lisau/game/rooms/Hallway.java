@@ -8,6 +8,7 @@ import se.lisau.game.util.ScannerUtil;
 public class Hallway implements Room {
     private final Resident resident;
     private final Burglar burglar;
+    private boolean running = true;
 
     public Hallway(Resident resident, Burglar burglar) {
         this.resident = resident;
@@ -16,12 +17,25 @@ public class Hallway implements Room {
 
     @Override
     public void roomDescription() {
-        System.out.println(" -- in the hallway a fight breaks out between you and the burglar! --");
-        System.out.println("       -- hit the burglar with the frying pan by pressing H --");
-        String H = ScannerUtil.getUserInput();
-        if (H.equalsIgnoreCase("H")) {
-            roomTask();
+        if (burglar.isConscious()) {
+            System.out.println(" -- in the hallway a fight breaks out between you and the burglar! --");
+            System.out.println("       -- hit the burglar with the frying pan by pressing H --");
+
+            while(running) {
+                String H = ScannerUtil.getUserInput();
+                if (H.equalsIgnoreCase("H")) {
+                    roomTask();
+                    running = false;
+                } else {
+                    System.out.println(" -- invalid input. try again! --");
+                }
+            }
+
+        } else {
+            System.out.println("-- the burglar is already unconscious! call the police before he wakes up! --");
         }
+
+
     }
 
     @Override

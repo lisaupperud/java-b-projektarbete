@@ -41,7 +41,7 @@ public class Game {
     }
 
     private void wakeUpMessage() {
-        System.out.println("a loud noice wakes you up!");
+        System.out.println("a loud noise wakes you up!");
         System.out.println("you're on the couch in the living room " +
                 " and hear a sound coming from the Bedroom");
         System.out.println(" there is a burglar in there!");
@@ -53,13 +53,13 @@ public class Game {
         while (!gameFinished && currentResident.isConscious()) {
             System.out.println("where do you go next?");
             livingRoom();
-            System.out.println("Bedroom");
+            System.out.println("bedroom");
             System.out.println("office");
             System.out.println("kitchen");
             System.out.println("hallway");
             String direction = ScannerUtil.getUserInput();
             switch (direction) {
-                case "Bedroom" -> Bedroom();
+                case "bedroom" -> Bedroom();
                 case "office" -> Office();
                 case "kitchen" -> Kitchen();
                 case "hallway" -> Hallway();
@@ -132,7 +132,7 @@ public class Game {
     }
 
     // metod för att avsluta spelet
-    public void gameFinished(boolean done) {
+    public void isGameFinished(boolean done) {
         this.gameFinished = done;
     }
 

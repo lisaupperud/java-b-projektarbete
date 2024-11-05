@@ -14,7 +14,6 @@ public class Kitchen implements Room {
 
     @Override
     public void roomDescription() {
-        while (true) {
             if (!fryingPanFound) {
                 System.out.println("      -- you're in the kitchen --");
                 System.out.println("-- you see the frying pan on the stove! --");
@@ -22,16 +21,12 @@ public class Kitchen implements Room {
                 String answer = ScannerUtil.getUserInput();
                 if (answer.equalsIgnoreCase("y")) {
                     roomTask();
-                    break;
                 } else if (answer.equalsIgnoreCase("n")) {
                     System.out.println("then gtfo of the house");
-                    break;
                 } else {
                     System.out.println("invalid answer");
                 }
             } else System.out.println("-- the stove is empty, the pan has already been taken --");
-            break;
-        }
 
     }
 
@@ -42,7 +37,6 @@ public class Kitchen implements Room {
             System.out.println("your damage has increased!");
             System.out.println(" ");
             pickUpFryingPan();
-            fryingPanFound = true;
         } else {
             System.out.println("you already have the frying pan!");
         }

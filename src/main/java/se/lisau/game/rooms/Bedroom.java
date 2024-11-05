@@ -29,13 +29,16 @@ public class Bedroom implements Room {
                 System.out.println(" ");
             } else if (answer.equalsIgnoreCase("n")) {
                 System.out.println("                -- lights are off --");
+                System.out.println("  -- the burglar doesn't know you are awake yet --");
             } else {
                 System.out.println("-- invalid input --");
             }
         }
 
     }
-
+    // metod för att tända ljusen
+    // om man vill tända ljusen så kallas metoden på och variabeln sätts till true
+    // så om man kommer in i Bedroom igen så är ljusen redan tända
     public void turnOnLights() {
         if (!lightsOn) {
             lightsOn = true;

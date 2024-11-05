@@ -3,14 +3,14 @@ package se.lisau.game.util;
 import java.util.Scanner;
 
 public class ScannerUtil {
-    private static Scanner sc = new Scanner(System.in);
+    private static final Scanner sc = new Scanner(System.in);
 
     private ScannerUtil() {
 
     }
 
     public static String getUserInput() {
-        return sc.nextLine();
+        return sc.nextLine().toLowerCase();
     }
 
     public static void closeScanner() {
