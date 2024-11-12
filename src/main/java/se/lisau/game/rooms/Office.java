@@ -5,16 +5,13 @@ import se.lisau.game.model.Burglar;
 import se.lisau.game.util.ScannerUtil;
 
 public class Office implements Room {
-    // referens till Game-objektet för att kunna avsluta spelet om spelaren vunnit
-    private final Game game;
     // referens till Burglar-objektet för att kunna kontrollera dess tillstånd
     private final Burglar burglar;
     // kontrollerar om spelaren kan försöka ringa polisen
     private boolean running = true;
 
-    // konstruktor som tar in två parametrar
-    public Office(Game game, Burglar burglar) {
-        this.game = game; // för att kunna avsluta spelet med hjälp av boolean setGameFinished
+    // konstruktor
+    public Office(Burglar burglar) {
         this.burglar = burglar; // för att kunna kontrollera om tjuven är vid medvetande
     }
 
@@ -57,7 +54,7 @@ public class Office implements Room {
                 System.out.println("        --calling the police--");
                 System.out.println("        YOU WON! CONGRATULATIONS!");
                 // så avslutas spelet eftersom variabeln gameFinished nu är true
-                game.setGameFinished(true);
+                Game.setGameFinished(true);
                 // loopen avslutas
                 running = false;
             } else {

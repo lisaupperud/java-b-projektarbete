@@ -23,7 +23,7 @@ public class Game {
     // variabel för att hålla reda på den aktuella spelaren
     private Resident currentResident;
     // variabel för att hålla reda på om spelet är vunnet
-    private boolean gameFinished = false;
+    private static boolean gameFinished = false;
 
     public Game() {
         // inledande meddelanden och skapar upp spelkaraktären
@@ -34,7 +34,7 @@ public class Game {
 
         // instantiate rummen och skickar karaktärerna dit
         kitchen = new Kitchen(currentResident); // tilldela currentResident till Kitchens konstruktor
-        office = new Office(this, burglar);
+        office = new Office(burglar);
         bedroom = new Bedroom();
         hallway = new Hallway(currentResident, burglar);
 
@@ -154,8 +154,8 @@ public class Game {
 
     // metod för att avsluta spelet
     // tar in en boolean som sen sätter gameFinished till true
-    public void setGameFinished(boolean done) {
-        this.gameFinished = done;
+    public static void setGameFinished(boolean done) {
+        gameFinished = done;
     }
 
 }
