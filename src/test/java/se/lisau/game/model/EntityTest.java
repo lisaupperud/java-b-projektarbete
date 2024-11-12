@@ -1,12 +1,19 @@
 package se.lisau.game.model;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class EntityTest {
-    Burglar b = new Burglar("Burglar", 10,5 );
-    Resident r = new Resident("Resident", 10, 3);
+    private Burglar b;
+    private Resident r;
+    @BeforeEach
+    void setUp() {
+        b = new Burglar("Burglar", 10,5 );
+        r = new Resident("Resident", 10, 3);
+    }
+
 
     @Test
     void punch() {
@@ -38,7 +45,7 @@ class EntityTest {
     }
     @Test
     void isConsciousFalse() {
-        Burglar b = new Burglar("Burglar", 10, 10);
+        b.addDamage(10);
         // returnera false eftersom b's damage är 10 nu
         // så r's hälsa blir 0 efter en hit
         r.takeHit(b.getDamage());

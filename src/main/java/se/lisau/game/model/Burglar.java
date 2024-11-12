@@ -19,7 +19,10 @@ public class Burglar extends Entity {
     public int getDamage() {
         return super.getDamage();
     }
-
+    @Override
+    public void addDamage(int damage) {
+        super.addDamage(damage);
+    }
     @Override
     public void takeHit(int damage) {
         super.takeHit(damage);
